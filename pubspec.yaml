@@ -1,0 +1,27 @@
+name: sp_ai_simple_bpe_tokenizer
+description: This is a simple bpe tokenizer for use with OpenAI's models.
+version: 0.0.1+1
+homepage: https://www.spaza.com
+
+environment:
+  sdk: '>=3.0.0-275.0.dev <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get_it: ^7.2.0
+  equatable: ^2.0.5
+  flutter_bloc: ^8.1.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.1
+
+flutter:
+  assets:
+    - assets/
+    - assets/files/
+    - assets/files/encoder.json
+    - assets/files/vocab.bpe
