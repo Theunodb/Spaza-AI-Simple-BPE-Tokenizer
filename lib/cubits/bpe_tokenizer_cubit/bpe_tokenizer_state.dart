@@ -17,6 +17,13 @@ class MainBpeTokenizerState extends Equatable {
       tokenContainer: tokenContainer ?? this.tokenContainer,
     );
   }
+  MainBpeTokenizerState copyWithNull({String? message, String? errorMessage, SPTokenContainer? tokenContainer}) {
+    return MainBpeTokenizerState(
+      message: message ?? this.message,
+      errorMessage: errorMessage ?? this.errorMessage,
+      tokenContainer: null,
+    );
+  }
 }
 
 abstract class BpeTokenizerState extends Equatable {
@@ -38,6 +45,13 @@ class BpeTokenizerLoading extends BpeTokenizerState {
 
 class BpeTokenizerLoaded extends BpeTokenizerState {
   const BpeTokenizerLoaded(MainBpeTokenizerState mainBpeTokenizerState) : super(mainBpeTokenizerState);
+}
+class BpeTokenizerClearing extends BpeTokenizerState {
+  const BpeTokenizerClearing(MainBpeTokenizerState mainBpeTokenizerState) : super(mainBpeTokenizerState);
+}
+
+class BpeTokenizerCleared extends BpeTokenizerState {
+  const BpeTokenizerCleared(MainBpeTokenizerState mainBpeTokenizerState) : super(mainBpeTokenizerState);
 }
 
 class BpeTokenizerError extends BpeTokenizerState {

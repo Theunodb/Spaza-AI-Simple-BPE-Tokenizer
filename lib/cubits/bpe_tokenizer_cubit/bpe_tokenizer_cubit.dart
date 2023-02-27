@@ -25,4 +25,12 @@ class BpeTokenizerCubit extends Cubit<BpeTokenizerState> {
       emit(BpeTokenizerError(state.mainBpeTokenizerState.copyWith(message: 'Error tokenizing input string', errorMessage: error.toString()), stackTrace: stackTrace.toString()));
     }
   }
+  clear() async {
+    emit(BpeTokenizerClearing(state.mainBpeTokenizerState.copyWith(message: 'Clearing state...', errorMessage: '')));
+    try {
+      emit(BpeTokenizerCleared(state.mainBpeTokenizerState.copyWithNull(message: 'Successfully cleared state!', tokenContainer: null)));
+    } catch (error, stackTrace) {
+      emit(BpeTokenizerError(state.mainBpeTokenizerState.copyWith(message: 'Error clearing state', errorMessage: error.toString()), stackTrace: stackTrace.toString()));
+    }
+  }
 }
