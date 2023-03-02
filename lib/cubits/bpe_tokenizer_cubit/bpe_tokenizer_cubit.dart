@@ -17,23 +17,36 @@ class BpeTokenizerCubit extends Cubit<BpeTokenizerState> {
     /// If an error occurs, it emits a BpeTokenizerError event with the error message and stack trace.
     /// The emit function is a part of the flutter_bloc library and is used to emit state changes in a Bloc or Cubit.
     /// The provided code seems to be a part of a Flutter application that uses flutter_bloc for state management.
-    emit(BpeTokenizerLoading(state.mainBpeTokenizerState.copyWith(message: 'Tokenizing input string...', errorMessage: '')));
+    emit(BpeTokenizerLoading(state.mainBpeTokenizerState
+        .copyWith(message: 'Tokenizing input string...', errorMessage: '')));
     try {
       /// The encodeString function of the SPAiSimpleBpeTokenizer class takes an input string and returns a SPTokenContainer object.
-      SPTokenContainer tokenContainer = await SPAiSimpleBpeTokenizer().encodeString(inputString);
-      emit(BpeTokenizerLoaded(state.mainBpeTokenizerState.copyWith(message: 'Successfully tokenized input string!', tokenContainer: tokenContainer)));
+      SPTokenContainer tokenContainer =
+          await SPAiSimpleBpeTokenizer().encodeString(inputString);
+      emit(BpeTokenizerLoaded(state.mainBpeTokenizerState.copyWith(
+          message: 'Successfully tokenized input string!',
+          tokenContainer: tokenContainer)));
     } catch (error, stackTrace) {
-      emit(BpeTokenizerError(state.mainBpeTokenizerState.copyWith(message: 'Error tokenizing input string', errorMessage: error.toString()), stackTrace: stackTrace.toString()));
+      emit(BpeTokenizerError(
+          state.mainBpeTokenizerState.copyWith(
+              message: 'Error tokenizing input string',
+              errorMessage: error.toString()),
+          stackTrace: stackTrace.toString()));
     }
   }
 
   clear() async {
     /// A function that clears the state of the BpeTokenizerCubit so that you can start over.
-    emit(BpeTokenizerClearing(state.mainBpeTokenizerState.copyWith(message: 'Clearing state...', errorMessage: '')));
+    emit(BpeTokenizerClearing(state.mainBpeTokenizerState
+        .copyWith(message: 'Clearing state...', errorMessage: '')));
     try {
-      emit(BpeTokenizerCleared(state.mainBpeTokenizerState.copyWithNull(message: 'Successfully cleared state!', tokenContainer: null)));
+      emit(BpeTokenizerCleared(state.mainBpeTokenizerState.copyWithNull(
+          message: 'Successfully cleared state!', tokenContainer: null)));
     } catch (error, stackTrace) {
-      emit(BpeTokenizerError(state.mainBpeTokenizerState.copyWith(message: 'Error clearing state', errorMessage: error.toString()), stackTrace: stackTrace.toString()));
+      emit(BpeTokenizerError(
+          state.mainBpeTokenizerState.copyWith(
+              message: 'Error clearing state', errorMessage: error.toString()),
+          stackTrace: stackTrace.toString()));
     }
   }
 }

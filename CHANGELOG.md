@@ -1,6 +1,7 @@
 ## 0.0.1+3
 
 * Updated LICENSE.
+* Updated formatting
 
 ## 0.0.1+2
 
