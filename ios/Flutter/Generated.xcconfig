@@ -1,11 +1,11 @@
 // This is a generated file; do not edit or check into version control.
-FLUTTER_ROOT=/Users/zanderwessels/Documents/Development/flutter
-FLUTTER_APPLICATION_PATH=/Users/zanderwessels/Documents/Spaza/spaza-packages/sp_ai_simple_bpe_tokenizer
+FLUTTER_ROOT=/Users/theunodebruin/flutter
+FLUTTER_APPLICATION_PATH=/Users/theunodebruin/TPDevelopment/spaza-packages/spaza_ai_simple_bpe_tokenizer
 COCOAPODS_PARALLEL_CODE_SIGN=true
 FLUTTER_TARGET=lib/main.dart
 FLUTTER_BUILD_DIR=build
 FLUTTER_BUILD_NAME=0.0.1
-FLUTTER_BUILD_NUMBER=0.0.1
+FLUTTER_BUILD_NUMBER=1
 EXCLUDED_ARCHS[sdk=iphonesimulator*]=i386
 EXCLUDED_ARCHS[sdk=iphoneos*]=armv7
 DART_OBFUSCATION=false
