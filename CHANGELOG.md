@@ -1,3 +1,7 @@
+## 0.0.1+3
+
+* Updated LICENSE.
+
 ## 0.0.1+2
 
 * Updated pubspec.yaml to include a homepage.
