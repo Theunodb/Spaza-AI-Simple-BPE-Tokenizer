@@ -3,5 +3,6 @@ import 'package:sp_ai_simple_bpe_tokenizer/cubits/bpe_tokenizer_cubit/bpe_tokeni
 
 /// This class is used to initialise the dependency injection.
 class DependencyInjection {
-  static init() => GetIt.instance.registerLazySingleton<BpeTokenizerCubit>(() => BpeTokenizerCubit());
+  static init() => GetIt.instance
+      .registerLazySingleton<BpeTokenizerCubit>(() => BpeTokenizerCubit());
 }

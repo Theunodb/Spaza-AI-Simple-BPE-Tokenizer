@@ -9,9 +9,13 @@ class MainBpeTokenizerState extends Equatable {
   @override
   List<Object?> get props => [message, errorMessage, tokenContainer];
 
-  const MainBpeTokenizerState({this.message, this.errorMessage, this.tokenContainer});
+  const MainBpeTokenizerState(
+      {this.message, this.errorMessage, this.tokenContainer});
 
-  MainBpeTokenizerState copyWith({String? message, String? errorMessage, SPTokenContainer? tokenContainer}) {
+  MainBpeTokenizerState copyWith(
+      {String? message,
+      String? errorMessage,
+      SPTokenContainer? tokenContainer}) {
     return MainBpeTokenizerState(
       message: message ?? this.message,
       errorMessage: errorMessage ?? this.errorMessage,
@@ -19,7 +23,10 @@ class MainBpeTokenizerState extends Equatable {
     );
   }
 
-  MainBpeTokenizerState copyWithNull({String? message, String? errorMessage, SPTokenContainer? tokenContainer}) {
+  MainBpeTokenizerState copyWithNull(
+      {String? message,
+      String? errorMessage,
+      SPTokenContainer? tokenContainer}) {
     return MainBpeTokenizerState(
       message: message ?? this.message,
       errorMessage: errorMessage ?? this.errorMessage,
@@ -45,29 +52,35 @@ class BpeTokenizerInitial extends BpeTokenizerState {
 
 /// The state of the BpeTokenizerCubit when it is loading.
 class BpeTokenizerLoading extends BpeTokenizerState {
-  const BpeTokenizerLoading(MainBpeTokenizerState mainBpeTokenizerState) : super(mainBpeTokenizerState);
+  const BpeTokenizerLoading(MainBpeTokenizerState mainBpeTokenizerState)
+      : super(mainBpeTokenizerState);
 }
 
 /// The state of the BpeTokenizerCubit when it has successfully loaded.
 class BpeTokenizerLoaded extends BpeTokenizerState {
-  const BpeTokenizerLoaded(MainBpeTokenizerState mainBpeTokenizerState) : super(mainBpeTokenizerState);
+  const BpeTokenizerLoaded(MainBpeTokenizerState mainBpeTokenizerState)
+      : super(mainBpeTokenizerState);
 }
 
 /// The state of the BpeTokenizerCubit when it is clearing.
 class BpeTokenizerClearing extends BpeTokenizerState {
-  const BpeTokenizerClearing(MainBpeTokenizerState mainBpeTokenizerState) : super(mainBpeTokenizerState);
+  const BpeTokenizerClearing(MainBpeTokenizerState mainBpeTokenizerState)
+      : super(mainBpeTokenizerState);
 }
 
 /// The state of the BpeTokenizerCubit when it has successfully cleared.
 class BpeTokenizerCleared extends BpeTokenizerState {
-  const BpeTokenizerCleared(MainBpeTokenizerState mainBpeTokenizerState) : super(mainBpeTokenizerState);
+  const BpeTokenizerCleared(MainBpeTokenizerState mainBpeTokenizerState)
+      : super(mainBpeTokenizerState);
 }
 
 /// The state of the BpeTokenizerCubit when it has encountered an error. Prints the error to the console in debug mode.
 class BpeTokenizerError extends BpeTokenizerState {
   final String? stackTrace;
 
-  BpeTokenizerError(MainBpeTokenizerState mainBpeTokenizerState, {this.stackTrace}) : super(mainBpeTokenizerState) {
+  BpeTokenizerError(MainBpeTokenizerState mainBpeTokenizerState,
+      {this.stackTrace})
+      : super(mainBpeTokenizerState) {
     if (kDebugMode) {
       log('ERROR: ${mainBpeTokenizerState.errorMessage}');
       log('ERROR: $stackTrace');

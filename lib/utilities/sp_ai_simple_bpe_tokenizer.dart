@@ -7,7 +7,9 @@ import 'package:sp_ai_simple_bpe_tokenizer/models/sp_token_container.dart';
 /// A regular expression pattern that matches text tokens in natural language.
 /// The pattern matches words with common English contractions (e.g. "it's", "they're"),
 /// words composed of letters, words composed of numbers, words composed of special characters (excluding whitespace), and whitespace characters.
-final pat = RegExp(r"'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+", unicode: true);
+final pat = RegExp(
+    r"'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+",
+    unicode: true);
 
 /// A function that returns a map of integers to Unicode strings.
 /// It generates a mapping from byte values to Unicode characters, including printable ASCII characters, Spanish characters, and some special characters.
@@ -34,7 +36,10 @@ Map<int, String> bytesToUnicode() {
   /// It generates a mapping from byte values to Unicode characters, including printable ASCII characters, Spanish characters, and some special characters.
   /// It first generates a list of byte values, creates a second list by copying the first one, and then appends any byte values that are not in the first list to both lists.
   /// It then maps each byte value in the resulting list to its corresponding Unicode character and returns the resulting map.
-  final bs = List<int>.from(List.generate(95, (i) => '!'.codeUnitAt(0) + i)).followedBy(List.generate(174 - 161 + 1, (i) => '¡'.codeUnitAt(0) + i)).followedBy(List.generate(255 - 174 + 1, (i) => '®'.codeUnitAt(0) + i)).toList();
+  final bs = List<int>.from(List.generate(95, (i) => '!'.codeUnitAt(0) + i))
+      .followedBy(List.generate(174 - 161 + 1, (i) => '¡'.codeUnitAt(0) + i))
+      .followedBy(List.generate(255 - 174 + 1, (i) => '®'.codeUnitAt(0) + i))
+      .toList();
 
   var cs = List<int>.from(bs);
   var n = 0;
@@ -84,7 +89,8 @@ class SPAiSimpleBpeTokenizer {
     _bpeRanks ??= await _loadBpeRanks();
 
     List<int> bpeTokens = [];
-    List<String?> matches = pat.allMatches(stringToEncode).map((match) => match.group(0)).toList();
+    List<String?> matches =
+        pat.allMatches(stringToEncode).map((match) => match.group(0)).toList();
     for (String? match in matches) {
       if (match != null) {
         List<int> encodedList = _encodeStr(match);
@@ -143,7 +149,8 @@ class SPAiSimpleBpeTokenizer {
         minPairs[(rank == null || rank.isNaN ? 1e10.toInt() : rank)] = pair;
       }
 
-      List<String>? bigram = minPairs[minPairs.keys.map((key) => key).reduce(min)];
+      List<String>? bigram =
+          minPairs[minPairs.keys.map((key) => key).reduce(min)];
 
       if (!bpeRanks.containsKey(bigram)) {
         break;
@@ -162,7 +169,9 @@ class SPAiSimpleBpeTokenizer {
         newWord.addAll(wordList.sublist(i, j));
         i = j;
 
-        if (wordList[i] == first && i < wordList.length - 1 && wordList[i + 1] == second) {
+        if (wordList[i] == first &&
+            i < wordList.length - 1 &&
+            wordList[i + 1] == second) {
           newWord.add(first + second);
           i += 2;
         } else {
@@ -202,7 +211,8 @@ class SPAiSimpleBpeTokenizer {
   Future<Map<String, dynamic>> _loadEncoder() async {
     /// A private function that loads an encoding dictionary from a JSON file included in the package.
     /// It reads the contents of the file, parses it as a JSON object, and returns the resulting dictionary.
-    final String encoderFileContent = await rootBundle.loadString('packages/sp_ai_simple_bpe_tokenizer/assets/files/encoder.json');
+    final String encoderFileContent = await rootBundle.loadString(
+        'packages/sp_ai_simple_bpe_tokenizer/assets/files/encoder.json');
     Map<String, dynamic> encoder = jsonDecode(encoderFileContent);
     return encoder;
   }
@@ -211,10 +221,16 @@ class SPAiSimpleBpeTokenizer {
   Future<Map<List<String>, int>> _loadBpeRanks() async {
     /// A private function that loads a BPE ranks dictionary from a file included in the package.
     /// It reads the contents of the file, extracts the BPE pairs and their corresponding ranks, and returns the resulting dictionary.
-    final String bpeFileContent = await rootBundle.loadString('packages/sp_ai_simple_bpe_tokenizer/assets/files/vocab.bpe');
+    final String bpeFileContent = await rootBundle.loadString(
+        'packages/sp_ai_simple_bpe_tokenizer/assets/files/vocab.bpe');
     List<String> lines = bpeFileContent.split('\n');
     List<String> subList = lines.sublist(1, lines.length - 1);
-    List<List<String>> bpeMerges = subList.map((String x) => x.split(RegExp(r'(\s+)')).where((e) => e.trim().isNotEmpty).toList()).toList();
+    List<List<String>> bpeMerges = subList
+        .map((String x) => x
+            .split(RegExp(r'(\s+)'))
+            .where((e) => e.trim().isNotEmpty)
+            .toList())
+        .toList();
 
     Map<List<String>, int> bpeRanks = {};
     for (int i = 0; i < bpeMerges.length; i++) {
