@@ -53,4 +53,4 @@ Because of the limited vocabulary size, the tokenizer might miss some unique wor
 The getTokenCountForString function is a part of the gpt_flutter package, which is licensed under the MIT License.
 
 ## Authors
-[www.spaza.com](http://www.spaza.com)
+[www.spaza.com](https://www.spaza.com)

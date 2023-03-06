@@ -1,7 +1,7 @@
 name: sp_ai_simple_bpe_tokenizer
 description: This is a simple bpe tokenizer for use with OpenAI's models.
-version: 0.0.1+1
-homepage: https://www.spaza.com
+version: 0.0.1+4
+homepage: https://github.com/Theunodb/Spaza-AI-Simple-BPE-Tokenizer
 
 environment:
     sdk: ">=2.19.3 <4.0.0"
