@@ -1,3 +1,8 @@
+## 0.0.1+4
+
+* Updated documentation.
+* Updated formatting
+
 ## 0.0.1+3
 
 * Updated LICENSE.

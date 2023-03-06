@@ -1,3 +1,4 @@
+/// A class that represents a container for the tokens, token count, and character count of a text.
 class SPTokenContainer {
   /// An list of integer tokens that represent the encoded text.
   final List<int>? tokens;

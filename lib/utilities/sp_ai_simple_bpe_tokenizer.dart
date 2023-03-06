@@ -16,6 +16,7 @@ final byteEncoder = bytesToUnicode();
 /// A function that generates a list of integers between x (inclusive) and y (exclusive) using the List.generate() method. It returns the generated list.
 List<int> range(int x, int y) => List.generate(y, (i) => i).sublist(x);
 
+/// A function that returns a map of Unicode strings to integers.
 Map<dynamic, dynamic> dictZip(List<dynamic> x, List<dynamic> y) {
   /// A function that zips two lists into a map. It takes two lists x and y of the same length,
   /// creates a new map, and assigns each element in x as a key and the corresponding element in y as a value in the map.
@@ -27,6 +28,7 @@ Map<dynamic, dynamic> dictZip(List<dynamic> x, List<dynamic> y) {
   return result;
 }
 
+/// A function that returns a map of integers to Unicode strings.
 Map<int, String> bytesToUnicode() {
   /// A function that returns a map of integers to Unicode strings.
   /// It generates a mapping from byte values to Unicode characters, including printable ASCII characters, Spanish characters, and some special characters.
@@ -53,6 +55,7 @@ Map<int, String> bytesToUnicode() {
   return result;
 }
 
+/// A class that implements a simple BPE (Byte Pair Encoding) tokenizer.
 class SPAiSimpleBpeTokenizer {
   static SPAiSimpleBpeTokenizer? _instance;
 
@@ -72,6 +75,7 @@ class SPAiSimpleBpeTokenizer {
   /// A private member variable for caching a dictionary of BPE (Byte Pair Encoding) ranks that maps pairs of tokens to integer values.
   Map<List<String>, int>? _bpeRanks;
 
+  /// A private member variable for caching a list of BPE (Byte Pair Encoding) merges.
   Future<SPTokenContainer> encodeString(String stringToEncode) async {
     /// A function that encodes a given text string into a list of integer tokens.
     /// It first encodes the string using UTF-8, applies BPE to the encoded string, and then maps each BPE token to an integer value using the encoding dictionary.
@@ -109,12 +113,14 @@ class SPAiSimpleBpeTokenizer {
     );
   }
 
+  /// A private member variable for caching a list of BPE (Byte Pair Encoding) merges.
   List<int> _encodeStr(String str) {
     /// A private function that encodes a given string using UTF-8 and returns a list of integer values.
     final encoded = utf8.encode(str);
     return encoded.map((x) => x).toList();
   }
 
+  /// A private member variable for caching a list of BPE (Byte Pair Encoding) merges.
   String _bpe(String token, Map<dynamic, dynamic> bpeRanks) {
     /// A private function that applies BPE to a given token using the BPE ranks dictionary.
     /// It splits the token into individual characters, generates all possible pairs of adjacent characters, and replaces the most frequent pair of characters with a new combined character.
@@ -179,6 +185,7 @@ class SPAiSimpleBpeTokenizer {
     return word;
   }
 
+  /// A private member variable for caching a list of BPE (Byte Pair Encoding) merges.
   Set<List<String>> _getPairs(List<String> wordList) {
     /// A private function that generates all possible pairs of adjacent characters in a given list of characters.
     final pairs = <List<String>>{};
@@ -191,6 +198,7 @@ class SPAiSimpleBpeTokenizer {
     return pairs.toSet();
   }
 
+  /// A private member variable for caching a list of BPE (Byte Pair Encoding) merges.
   Future<Map<String, dynamic>> _loadEncoder() async {
     /// A private function that loads an encoding dictionary from a JSON file included in the package.
     /// It reads the contents of the file, parses it as a JSON object, and returns the resulting dictionary.
@@ -199,6 +207,7 @@ class SPAiSimpleBpeTokenizer {
     return encoder;
   }
 
+  /// A private member variable for caching a list of BPE (Byte Pair Encoding) merges.
   Future<Map<List<String>, int>> _loadBpeRanks() async {
     /// A private function that loads a BPE ranks dictionary from a file included in the package.
     /// It reads the contents of the file, extracts the BPE pairs and their corresponding ranks, and returns the resulting dictionary.
