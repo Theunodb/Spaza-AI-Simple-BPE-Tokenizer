@@ -10,12 +10,12 @@ dependencies:
   flutter:
     sdk: flutter
 
-  get_it: ^7.2.0
+  get_it: ^8.0.2
   equatable: ^2.0.5
-  flutter_bloc: ^8.1.2
+  flutter_bloc: ^8.1.6
 
 dev_dependencies:
-  flutter_lints: ^2.0.1
+  flutter_lints: ^5.0.0
 
 flutter:
   assets:
